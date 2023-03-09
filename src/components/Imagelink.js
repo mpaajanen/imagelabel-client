@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Imagelink = () => {
+const Imagelink = ({ image }) => {
     return (
         <div>
-            Image
+            <Link to={`/label-image/${image._id}`}>Image</Link>
         </div>
     );
 };
