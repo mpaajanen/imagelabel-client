@@ -10,7 +10,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Listimages />} />
           <Route path='/create-image' element={<CreateImage />} />
-          <Route path='/label-image' element={<Labelimage />} />
+          <Route path='/label-image/:id' element={<Labelimage />} />
         </Routes>
       </div>
     </Router>
