@@ -50,8 +50,9 @@ const Labelimage = () => {
     }
 
     const createButton = label => {
+        const status = data.labels.includes(label)
         return (
-            <Labelbutton key={label} label={label} handleLabelButton={handleClick} />
+            <Labelbutton key={label} label={label} status={status} handleLabelButton={handleClick} />
         )
     }
 

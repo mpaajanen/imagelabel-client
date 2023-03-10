@@ -1,11 +1,12 @@
 import { Button } from '@mui/material';
 import React from 'react';
 
-const Labelbutton = ({ label, data, handleLabelButton }) => {
+const Labelbutton = ({ label, data, status, handleLabelButton }) => {
+    const buttonVariant = status ? 'contained' : 'outlined'
     return (
         <div>
             <Button
-                variant='outlined' 
+                variant={buttonVariant} 
                 onClick={() => handleLabelButton(label, data)}
                 sx={{
                     ':hover': {
