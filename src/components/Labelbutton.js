@@ -6,13 +6,16 @@ const Labelbutton = ({ label, data, status, handleLabelButton }) => {
     return (
         <div>
             <Button
+                size='large'
                 variant={buttonVariant} 
                 onClick={() => handleLabelButton(label, data)}
                 sx={{
                     ':hover': {
                         bgcolor: 'red',
                         color: 'white'
-                    }
+                    },
+                    width: '90%',
+                    margin: '0.25em'
                 }}
             >{label}</Button>
         </div>

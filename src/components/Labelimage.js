@@ -8,6 +8,7 @@ import axios from 'axios'
 
 const Labelimage = () => {
     const { id } = useParams()
+    const path = '/images'
     const labels = ['roots', 'grease', 'cracks']
     const queryClient = useQueryClient()
 
@@ -70,16 +71,15 @@ const Labelimage = () => {
     return (
         <div>
             <Link to='/'>Takaisin kuvalistaan</Link>
-            <div>
-                Kuva {id}
-            </div>
-            <div>
-                {data.labels.toString()}
-            </div>
+            <div>Kuva {id} {data.link}</div>
+            <div>{data.labels.toString()}</div>
             <div>
                 <Button variant='outlined' onClick={() => handleTransfer("next")}>Next</Button>
                 <Button variant='outlined' onClick={() => handleTransfer("previous")}>Previous</Button>
-                {labels.map(label => createButton(label))}
+            </div>
+            <div style={{display: 'flex'}}>
+                <span>{labels.map(label => createButton(label))}</span>
+                <span><img src={`${path}/${data.link}.png`} /></span>
             </div>
         </div>
     );
