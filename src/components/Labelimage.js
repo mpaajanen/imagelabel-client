@@ -13,12 +13,14 @@ const Labelimage = () => {
     const queryClient = useQueryClient()
 
     const fetchImage = async () => {
-        const response = await axios.get(`http://localhost:8082/api/images/${id}`)
+        const response = await axios.get(`/api/images/${id}`)
+        // const response = await axios.get(`http://localhost:8082/api/images/${id}`)
         return response.data
     }
 
     const updateLabels = async (labels) => {
-        const response = await axios.put(`http://localhost:8082/api/images/${id}`, labels)
+        const response = await axios.put(`/api/images/${id}`, labels)
+        // const response = await axios.put(`http://localhost:8082/api/images/${id}`, labels)
         return response.data
     }
 
