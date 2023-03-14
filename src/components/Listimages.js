@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Imagelink from './Imagelink';
 
-function Listimages() {
+function Listimages({ user }) {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,12 @@ function Listimages() {
     images.length === 0
       ? 'no images!'
       : images.map((image, k) => <Imagelink image={image} key={k} />);
+
+  if (!user) return (
+    <div>
+      Kirjaudu ensin sisään.
+    </div>
+  )
 
   return (
     <div>
