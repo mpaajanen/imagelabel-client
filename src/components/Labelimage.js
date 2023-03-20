@@ -13,14 +13,21 @@ const Labelimage = () => {
     const queryClient = useQueryClient()
 
     const fetchImage = async () => {
-        const response = await axios.get(`/api/images/${id}`)
-        // const response = await axios.get(`http://localhost:8082/api/images/${id}`)
+        // const response = await axios.get(`/api/images/${id}`)
+        const response = await axios.get(`http://localhost:8082/api/images/${id}`)
         return response.data
     }
 
     const updateLabels = async (labels) => {
-        const response = await axios.put(`/api/images/${id}`, labels)
-        // const response = await axios.put(`http://localhost:8082/api/images/${id}`, labels)
+        const loggedLabeller = window.localStorage.getItem('loggedLabeller')
+        console.log({loggedLabeller})
+        const token = JSON.parse(loggedLabeller).token
+        console.log({token})
+        const config = {
+            headers: { Authorization: `Bearer ${token}`}
+        }
+        // const response = await axios.put(`/api/images/${id}`, labels, config)
+        const response = await axios.put(`http://localhost:8082/api/images/${id}`, labels, config)
         return response.data
     }
 
