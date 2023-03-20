@@ -20,9 +20,7 @@ const Labelimage = () => {
 
     const updateLabels = async (labels) => {
         const loggedLabeller = window.localStorage.getItem('loggedLabeller')
-        console.log({loggedLabeller})
         const token = JSON.parse(loggedLabeller).token
-        console.log({token})
         const config = {
             headers: { Authorization: `Bearer ${token}`}
         }
