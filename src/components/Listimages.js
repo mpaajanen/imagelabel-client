@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Imagelink from './Imagelink';
 
-function Listimages({ user }) {
-  const [images, setImages] = useState([]);
-
-  useEffect(() => {
-    axios
-      // .get('http://localhost:8082/api/images')
-      .get('/api/images')
-      .then((res) => {
-        setImages(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from Listimages');
-      });
-  }, []);
+function Listimages({ user, images }) {
 
   const imageList =
     images.length === 0
       ? 'no images!'
       : images.map((image, k) => <Imagelink image={image} key={k} />);
+      // : images.map((image, k, images) => <Imagelink image={image} previous={images[k-1]} next={images[k+1]} key={k} />);
 
   if (!user) return (
     <div>

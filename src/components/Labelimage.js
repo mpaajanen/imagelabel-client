@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material'
 import Labelbutton from './Labelbutton'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const Labelimage = () => {
+const Labelimage = ({ images }) => {
     const { id } = useParams()
     const path = '/images'
     const labels = ['roots', 'grease', 'cracks']
     const queryClient = useQueryClient()
+
+    const prevImg = images.map((image, i, images) => image._id === id ? images[i-1] : undefined).filter(result => result !== undefined)
+    const nextImg = images.map((image, i, images) => image._id === id ? images[i+1] : undefined).filter(result => result !== undefined)
 
     const fetchImage = async () => {
         // const response = await axios.get(`/api/images/${id}`)
@@ -71,8 +74,16 @@ const Labelimage = () => {
         })
     }
 
-    const handleTransfer = () => {
+    const prevBtn = () => {
+        return prevImg.length > 0
+        ? <Button href={`/label-image/${prevImg[0]._id}`} variant='outlined'>Edellinen</Button>
+        : <span>...</span>
+    }
 
+    const nextBtn = () => {
+        return nextImg.length > 0
+        ? <Button href={`/label-image/${nextImg[0]._id}`} variant='outlined'>Seuraava</Button>
+        : <span>...</span>
     }
 
     return (
@@ -80,9 +91,10 @@ const Labelimage = () => {
             <Link to='/'>Takaisin kuvalistaan</Link>
             <div>Kuva {id} {data.link}</div>
             <div>{data.labels.toString()}</div>
+            <div>{prevImg.length > 0 ? prevImg[0]._id : ''} | {nextImg.length > 0 ? nextImg[0]._id : ''}</div>
             <div>
-                <Button variant='outlined' onClick={() => handleTransfer("next")}>Next</Button>
-                <Button variant='outlined' onClick={() => handleTransfer("previous")}>Previous</Button>
+                {prevBtn()}
+                {nextBtn()}
             </div>
             <div style={{display: 'flex'}}>
                 <span>{labels.map(label => createButton(label))}</span>

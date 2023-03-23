@@ -1,12 +1,26 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import axios from 'axios'
 import Listimages from "./components/Listimages";
 import Labelimage from "./components/Labelimage";
 import CreateImage from "./components/CreateImage";
-import { useEffect, useState } from "react";
 import Login from "./components/Login";
 
 function App() {
+  const [images, setImages] = useState([]);
   const [user, setUser] = useState(null)
+  
+  useEffect(() => {
+    axios
+      // .get('http://localhost:8082/api/images')
+      .get('/api/images')
+      .then((res) => {
+        setImages(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from Listimages');
+      });
+  }, []);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedLabeller')
@@ -39,8 +53,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login onLogin={login} />} />
             <Route path='/create-image' element={<CreateImage />} />
-            <Route path='/label-image/:id' element={<Labelimage />} />
-            <Route exact path="/" element={<Listimages user={user} />} />
+            <Route path='/label-image/:id' element={<Labelimage images={images} />} />
+            <Route exact path="/" element={<Listimages user={user} images={images} />} />
           </Routes>
         </div>
       </Router>
