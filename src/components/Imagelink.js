@@ -8,7 +8,7 @@ const Imagelink = ({ image }) => {
     return (
         <div>
             {/* <Link to={`/label-image/${image._id}`} state={{ prevImg, nextImg }}>{image.link}</Link> */}
-            <Link to={`/label-image/${image._id}`}>{image.link}</Link>
+            <Link to={`/label-image/${image._id}`}>{image.link}</Link> [{image.labels.toString()}]
         </div>
     );
 };
