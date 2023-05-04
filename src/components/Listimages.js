@@ -18,8 +18,8 @@ function Listimages({ user, images }) {
 
   return (
     <div>
-        <h2 className='display-4 text-center'>Images</h2>
-        <Link to='/create-image'>Lisää kuva</Link>
+        {/* <h2 className='display-4 text-center'>Images</h2>
+        <Link to='/create-image'>Lisää kuva</Link> */}
         <div>{imageList}</div>
     </div>
   );
