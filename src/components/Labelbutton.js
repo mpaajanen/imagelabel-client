@@ -1,24 +1,41 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import React from 'react';
 
 const Labelbutton = ({ label, data, status, handleLabelButton }) => {
     const buttonVariant = status ? 'contained' : 'outlined'
+    const style = label.includes("vp-") || label.includes("m-")
+    ? {
+        ':hover': {
+            bgcolor: 'red',
+            color: 'white'
+        },
+        width: 'auto',
+        minWidth: 'maxContent',
+        margin: '0.25em'
+    }
+    : {
+        ':hover': {
+            bgcolor: 'red',
+            color: 'white'
+        },
+        width: '100%',
+        minWidth: 'maxContent',
+        margin: '0.25em'
+    }
+
     return (
-        <div>
+        // <Box sx={{
+        //     display: 'flex',
+        //     justifyContent: 'space-between',
+        //     width: '100%',
+        // }}>
             <Button
-                size='large'
+                size='small'
                 variant={buttonVariant} 
                 onClick={() => handleLabelButton(label, data)}
-                sx={{
-                    ':hover': {
-                        bgcolor: 'red',
-                        color: 'white'
-                    },
-                    width: '90%',
-                    margin: '0.25em'
-                }}
-            >{label}</Button>
-        </div>
+                sx={style}
+            >{label.charAt(label.indexOf("-")+1).toUpperCase() + label.slice(label.indexOf("-")+2)}</Button>
+        // </Box>
     );
 };
 
