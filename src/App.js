@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { Box } from '@mui/material'
 import axios from 'axios'
 import Listimages from "./components/Listimages";
 import Labelimage from "./components/Labelimage";
 import CreateImage from "./components/CreateImage";
 import Login from "./components/Login";
+
+import "./global.css"
 
 function App() {
   const [images, setImages] = useState([]);
@@ -40,13 +43,13 @@ function App() {
   }
 
   return (
-    <div>
+    <Box sx={{border: '5px solid green'}}>
       <Router>
         <div>
-        <span><Link to='/'>Home</Link> | </span>
+        <span><Link to='/'>Alkuun</Link> | </span>
           {user 
-            ? <span>{user.username} <button onClick={logout}>logout</button></span>
-            : <Link to="/login">login</Link>
+            ? <span>{user.username} <button onClick={logout}>Kirjaudu ulos</button></span>
+            : <Link to="/login">Kirjaudu</Link>
           }
         </div>
         <div>
@@ -54,11 +57,11 @@ function App() {
             <Route path="/login" element={<Login onLogin={login} />} />
             <Route path='/create-image' element={<CreateImage />} />
             <Route path='/label-image/:id' element={<Labelimage images={images} />} />
-            <Route exact path="/" element={<Listimages user={user} images={images} />} />
+            <Route path="/" element={<Listimages user={user} images={images} />} />
           </Routes>
         </div>
       </Router>
-    </div>
+    </Box>
   );
 }
 
