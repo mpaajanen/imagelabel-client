@@ -34,11 +34,11 @@ const CreateImage = (props) => {
         <div>
             <Link to='/'>Takaisin kuvalistaan</Link>
             <div>
-                Lisää kuva<br />
+                Lisää kuva syöttämällä kuvan nimi ja mahdollinen luokka.<br />
                 <form noValidate onSubmit={onSubmit}>
                     <input
                         type='text'
-                        placeholder='linkki'
+                        placeholder='kuvan nimi'
                         name='link'
                         value={image.link}
                         onChange={onChange}

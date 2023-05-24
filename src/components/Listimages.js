@@ -6,9 +6,8 @@ function Listimages({ user, images }) {
 
   const imageList =
     images.length === 0
-      ? 'no images!'
+      ? 'ei luokiteltavia kuvia..'
       : images.map((image, k) => <Imagelink image={image} key={k} />);
-      // : images.map((image, k, images) => <Imagelink image={image} previous={images[k-1]} next={images[k+1]} key={k} />);
 
   if (!user) return (
     <div>
@@ -18,8 +17,8 @@ function Listimages({ user, images }) {
 
   return (
     <div>
-        {/* <h2 className='display-4 text-center'>Images</h2>
-        <Link to='/create-image'>Lisää kuva</Link> */}
+        <Link to='/create-image'>Lisää kuvalinkki listaan</Link>
+        <h2 className='display-4 text-center'>Luokiteltavat kuvat</h2>
         <div>{imageList}</div>
     </div>
   );

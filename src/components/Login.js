@@ -9,7 +9,6 @@ const Login = (props) => {
     const navigate = useNavigate()
 
     const onSubmit = async (event) => {
-        // console.log(event)
         event.preventDefault()
 
         try {
