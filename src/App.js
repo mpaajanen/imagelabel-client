@@ -15,7 +15,6 @@ function App() {
   
   useEffect(() => {
     axios
-      // .get('http://localhost:8082/api/images')
       .get('/api/images')
       .then((res) => {
         setImages(res.data);
