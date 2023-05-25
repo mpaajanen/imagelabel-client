@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import React from 'react';
 
 const Labelbutton = ({ label, data, status, handleLabelButton }) => {
@@ -24,18 +24,14 @@ const Labelbutton = ({ label, data, status, handleLabelButton }) => {
     }
 
     return (
-        // <Box sx={{
-        //     display: 'flex',
-        //     justifyContent: 'space-between',
-        //     width: '100%',
-        // }}>
-            <Button
-                size='small'
-                variant={buttonVariant} 
-                onClick={() => handleLabelButton(label, data)}
-                sx={style}
-            >{label.charAt(label.indexOf("-")+1).toUpperCase() + label.slice(label.indexOf("-")+2)}</Button>
-        // </Box>
+        <Button
+            size='small'
+            variant={buttonVariant} 
+            onClick={() => handleLabelButton(label, data)}
+            sx={style}
+        >
+            {label.charAt(label.indexOf("-")+1).toUpperCase() + label.slice(label.indexOf("-")+2)}
+        </Button>
     );
 };
 
