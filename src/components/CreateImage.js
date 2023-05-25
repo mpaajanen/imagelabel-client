@@ -16,8 +16,14 @@ const CreateImage = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        const loggedLabeller = window.localStorage.getItem('loggedLabeller')
+        const token = JSON.parse(loggedLabeller).token
+        const config = {
+            headers: { Authorization: `Bearer ${token}`}
+        }
+
         axios
-            .post('http://localhost:8082/api/images', image)
+            .post('/api/images', {images: [image]}, config)
             .then((res) => {
                 setImage({
                     link: '',
